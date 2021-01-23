@@ -1,6 +1,7 @@
 export default class PhotoApiService {
   constructor() {
     this.searchQuery = "";
+    this.page = 1;
   }
 
   fetchArticals() {
@@ -10,12 +11,13 @@ export default class PhotoApiService {
       },
     };
 
-    const url =
-      "https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=1&per_page=12";
+    const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12`;
 
     fetch(url, options)
       .then((response) => response.json())
-      .then(console.log);
+      .then((data) => {
+        this.page += 1;
+      });
   }
 
   get query() {
