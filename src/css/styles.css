@@ -37,6 +37,7 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
 }
 
 .button.is-hidden {
@@ -47,7 +48,7 @@ body {
   display: none;
 }
 
-.btn {
+/* .btn {
   margin-top: 10px;
   border-radius: 4px;
   border-color: aqua;
@@ -57,7 +58,7 @@ body {
   color: black;
   font-weight: bold;
   font-size: 20px;
-}
+} */
 
 .button.is-hidden {
   display: none;
