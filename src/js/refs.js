@@ -1,6 +1,7 @@
 export default {
-  divForm: document.querySelector(".form"),
+  input: document.getElementById("query"),
   searchForm: document.querySelector(".js-search-form"),
-  articlesContainer: document.querySelector(".js-articles-container"),
+  ulGallery: document.querySelector(".gallery"),
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+  btnSearch: document.querySelector(".btn-search"),
 };
