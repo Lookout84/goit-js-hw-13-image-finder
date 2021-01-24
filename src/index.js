@@ -6,7 +6,7 @@ import debounce from "lodash.debounce";
 import "@pnotify/core/dist/PNotify.css";
 import { error } from "@pnotify/core";
 import loadBigImg from "./js/lightbox.js";
-import e from "cors";
+
 
 //const photoApiService = new PhotoApiService();
 
