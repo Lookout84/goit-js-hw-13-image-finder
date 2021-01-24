@@ -1,6 +1,4 @@
 import imageCard from "../templates/imagecard.hbs";
-import "@pnotify/core/dist/PNotify.css";
-import { error } from "@pnotify/core";
 
 export default {
   query: "",
@@ -27,7 +25,7 @@ export default {
     const result = await response.json();
     const data = result.hits;
     const items = imageCard(data);
-
+    console.dir(data);
     z.insertAdjacentHTML("beforeend", items);
 
     window.scrollTo({

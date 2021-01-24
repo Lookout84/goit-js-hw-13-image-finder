@@ -5,7 +5,7 @@ import refs from "./js/refs.js";
 import debounce from "lodash.debounce";
 import "@pnotify/core/dist/PNotify.css";
 import { error } from "@pnotify/core";
-import basicLightbox from "basiclightbox";
+import loadBigImg from "./js/lightbox.js";
 import e from "cors";
 
 //const photoApiService = new PhotoApiService();
@@ -14,9 +14,9 @@ const { input, ulGallery, searchForm, loadMoreBtn, btnSearch } = refs;
 
 searchForm.addEventListener("submit", onSearch);
 loadMoreBtn.addEventListener("click", onLoadMore);
+ulGallery.addEventListener("click", loadBigImg);
 
 function onSearch(event) {
-  btnSearchActive();
   event.preventDefault();
   clearGallery();
   asyncFetch.resetPage();
@@ -27,6 +27,8 @@ function onSearch(event) {
   setTimeout(() => {
     loadMoreBtn.classList.remove("is-hidden");
   }, 1000);
+
+  input.value = "";
 }
 
 function onLoadMore() {
@@ -37,11 +39,3 @@ function onLoadMore() {
 function clearGallery() {
   ulGallery.innerHTML = "";
 }
-
-function btnSearchActive() {
-  if ((input.value = "")) {
-    btnSearch.disabled = true;
-  } else btnSearch.disabled = false;
-}
-
-console.log(input.value);
