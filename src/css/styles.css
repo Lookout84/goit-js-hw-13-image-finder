@@ -39,8 +39,15 @@ body {
   margin-right: auto;
 }
 
-.btn-search,
-.btn-load {
+.button.is-hidden {
+  display: none;
+}
+
+.button > .spinner.is-hidden {
+  display: none;
+}
+
+.btn {
   margin-top: 10px;
   border-radius: 4px;
   border-color: aqua;
