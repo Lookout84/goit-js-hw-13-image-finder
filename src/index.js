@@ -1,18 +1,20 @@
 import css from "./css/styles.css";
-import PhotoApiService from "./js/apiService.js";
+import asyncFetch from "./js/apiService.js";
 import refs from "./js/refs.js";
+import imageCard from "./templates/imagecard.hbs";
 
-const photoApiService = new PhotoApiService();
+//const photoApiService = new PhotoApiService();
 
 refs.searchForm.addEventListener("submit", onSearch);
 refs.loadMoreBtn.addEventListener("click", onLoadMore);
 
 function onSearch(event) {
   event.preventDefault();
-  photoApiService.query = event.currentTarget.elements.query.value;
-  photoApiService.fetchArticals();
+  asyncFetch.query = event.currentTarget.elements.query.value;
+  asyncFetch.resetPage();
+  asyncFetch.getFetch();
 }
 
 function onLoadMore() {
-  photoApiService.fetchArticals();
+  asyncFetch.getFetch();
 }
