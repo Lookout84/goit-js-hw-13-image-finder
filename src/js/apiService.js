@@ -13,7 +13,7 @@ export default {
     return (this.query = value);
   },
 
-  async getFetch(value = this.query, z) {
+  async getFetch(value = this.query, markup) {
     let key = `20004677-e0c621e42f0d912e7de39a0de`;
     this.queryValue = value;
 
@@ -26,13 +26,13 @@ export default {
     const data = result.hits;
     const items = imageCard(data);
     console.dir(data);
-    z.insertAdjacentHTML("beforeend", items);
+    markup.insertAdjacentHTML("beforeend", items);
 
     window.scrollTo({
-      top: z.scrollHeight,
+      top: markup.scrollHeight,
       behavior: "smooth",
     });
-    return z;
+    return markup;
   },
 
   setPage() {
