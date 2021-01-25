@@ -4,9 +4,10 @@ import asyncFetch from "./js/apiService.js";
 import refs from "./js/refs.js";
 //import debounce from "lodash.debounce";
 import "@pnotify/core/dist/PNotify.css";
-//import { error } from "@pnotify/core";
+import { error } from "@pnotify/core";
 import loadBigImg from "./js/lightbox.js";
 import LoadMoreBtn from "./js/button.js";
+import imageCard from "./templates/imagecard.hbs";
 
 //const photoApiService = new PhotoApiService();
 
@@ -24,19 +25,47 @@ function onSearch(event) {
   event.preventDefault();
   clearGallery();
   asyncFetch.resetPage();
+  asyncFetch.query = event.currentTarget.elements.query.value;
 
-  const inputValue = event.currentTarget.elements.query.value;
-  loadMoreBtn.show();
-  loadMoreBtn.disable()
-  asyncFetch.getFetch(inputValue, ulGallery, loadMoreBtn.enable());
-
-  input.value = "";
+  if (asyncFetch.query === "") {
+    error({
+      text: "Please enter a more specific query!",
+    });
+  } else {
+    loadMoreBtn.show();
+    hitsFetch();
+    input.value = "";
+  }
 }
 
 function onLoadMore() {
-  loadMoreBtn.disable()
   asyncFetch.setPage();
-  asyncFetch.getFetch(undefined, ulGallery, loadMoreBtn.enable());
+  hitsFetch();
+}
+
+function hitsFetch() {
+  loadMoreBtn.disable();
+  asyncFetch
+    .getFetch()
+    .then((data) => data.hits)
+    .then((hits) => {
+      let hitsLength = Object.keys(hits).length;
+      appendHitsMarkup(hits);
+      if (hitsLength >= 12) {
+        loadMoreBtn.show();
+        loadMoreBtn.enable();
+      } else if (hitsLength < 12) {
+        loadMoreBtn.hide();
+      }
+    });
+}
+
+function appendHitsMarkup(hits) {
+  ulGallery.insertAdjacentHTML("beforeend", imageCard(hits));
+  window.scrollTo({
+    top: ulGallery.scrollHeight,
+    behavior: "smooth",
+  });
 }
 
 function clearGallery() {
