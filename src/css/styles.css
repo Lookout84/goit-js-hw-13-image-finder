@@ -75,7 +75,7 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
-  max-width: calc(100vw - 200px);
+  max-width: calc(100vw - 400px);
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 30px;

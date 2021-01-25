@@ -28,6 +28,7 @@ function onSearch(event) {
   asyncFetch.query = event.currentTarget.elements.query.value;
 
   if (asyncFetch.query === "") {
+    loadMoreBtn.hide();
     error({
       text: "Please enter a more specific query!",
     });
